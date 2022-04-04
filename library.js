@@ -17,36 +17,51 @@ function addBookToLibrary() {
 	render(newBook);
 }
 
-// Test values
-let title = window.prompt("title: ");
-let author = window.prompt("title: ");
-let pages = window.prompt("title: ");
-let hasBeenRead = window.prompt("title: ");
+// User input values aand function to grab them via pop up TODO: Grab user input via HTML form
+let title;
+let author;
+let pages;
+let hasBeenRead;
+
+function getInput() {
+	
+	title = window.prompt("title: ");
+	author = window.prompt("title: ");
+	pages = window.prompt("title: ");
+	hasBeenRead = window.prompt("title: ");
+	
+	addBookToLibrary();
+}
+
+const addNewCardBtn = document.querySelector('.addNewBook');
+
+addNewCardBtn.addEventListener('click', function() {
+	getInput();
+});
 
 // Display created book on user interface
 
 function render(newBook) {
-	let cardContainer = document.querySelector('.card');
-	let bookTitle = document.createElement('div');
-	let bookAuthor = document.createElement('div');
-	let bookPages = document.createElement('div');
-	let bookRead = document.createElement('div');
 	
-	bookTitle.textContent = newBook.title;
-	cardContainer.appendChild(bookTitle);
+	const cardContainer = document.querySelector('#card');
+	const card = document.createElement('div');
+	const bookTitle = document.createElement('p')
+	const bookAuthor = document.createElement('p');
+	const bookPages = document.createElement('p');
+	const bookRead = document.createElement('p');
+
+    bookTitle.textContent = newBook.title;
+	card.appendChild(bookTitle);
 	
 	bookAuthor.textContent = newBook.author;
-	cardContainer.appendChild(bookAuthor);
+	card.appendChild(bookAuthor);
 	
 	bookPages.textContent = newBook.pages;
-	cardContainer.appendChild(bookPages);
+	card.appendChild(bookPages);
 	
-	bookRead.textContent = newBook.read;
-	cardContainer.appendChild(bookRead);
+	bookRead.textContent = newBook.hasBeenRead;
+	card.appendChild(bookRead);
+	
+	cardContainer.appendChild(card);
 }
-
-addBookToLibrary();
-
-
-
 
